@@ -125,7 +125,17 @@ class MainPage extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 5.w),
             width: 335.w,
             height: 40.h,
-            // color: CupertinoColors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(Icons.home, color: Colors.grey, size: 30),
+                Icon(Icons.explore, color: Colors.grey, size: 30),
+                Icon(Icons.bookmark_border_rounded,
+                    color: Colors.grey, size: 30),
+                Icon(Icons.download, color: Colors.grey, size: 30),
+                Icon(Icons.person, color: Colors.grey, size: 30),
+              ],
+            ),
           ),
         ),
       ),

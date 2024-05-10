@@ -4,10 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie_app/screens/main_page/tab_bar/comments.dart';
+import 'package:movie_app/screens/main_page/tab_bar/more_like_this.dart';
+import 'package:movie_app/screens/main_page/tab_bar/trailers.dart';
 import 'package:movie_app/utils/extension/sized_box_extension.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-class MovieFullInfo extends StatelessWidget {
+class MovieFullInfo extends StatefulWidget {
   final String movieTeaser;
   final String movieRating;
   final String movieName;
@@ -28,6 +31,38 @@ class MovieFullInfo extends StatelessWidget {
   });
 
   @override
+  State<MovieFullInfo> createState() => _MovieFullInfoState();
+}
+
+class _MovieFullInfoState extends State<MovieFullInfo> {
+  List<Map<String, dynamic>> movieCasts_ls = [
+    {
+      'name': 'Sam Worthington',
+      'cast': 'main protagonist',
+    },
+    {
+      'name': 'Zoe Saldana',
+      'cast': 'Na\'vi princess',
+    },
+    {
+      'name': 'Sigourney Weaver',
+      'cast': 'Scientist',
+    },
+    {
+      'name': 'Stephen Lang',
+      'cast': 'Antagonist',
+    },
+    {
+      'name': 'Michelle Rodriguez',
+      'cast': 'Pilot',
+    },
+  ];
+
+  Color color1 = Color(0xFF820FE1);
+  Color color2 = Colors.grey;
+  Color color3 = Colors.grey;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF1B1F32),
@@ -43,7 +78,7 @@ class MovieFullInfo extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   image: DecorationImage(
-                      image: AssetImage(movieTeaser),
+                      image: AssetImage(widget.movieTeaser),
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter),
                 ),
@@ -57,7 +92,7 @@ class MovieFullInfo extends StatelessWidget {
                     Container(
                       width: 250.w,
                       child: Text(
-                        movieName,
+                        widget.movieName,
                         style: GoogleFonts.quicksand(
                           color: Colors.white,
                           fontSize: 22.sp,
@@ -96,7 +131,7 @@ class MovieFullInfo extends StatelessWidget {
                       color: Color(0xFF820FE1),
                     ),
                     Text(
-                      movieRating,
+                      widget.movieRating,
                       style: TextStyle(
                           color: Color(0xFF820FE1),
                           fontWeight: FontWeight.w700),
@@ -107,14 +142,14 @@ class MovieFullInfo extends StatelessWidget {
                       size: 15.sp,
                     ),
                     Text(
-                      '  $comeOutYear  ',
+                      '  ${widget.comeOutYear}  ',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w600),
                     ),
                     containerMaker('13+'),
-                    containerMaker(country),
+                    containerMaker(widget.country),
                     containerMaker('Subtitle'),
                   ],
                 ),
@@ -194,7 +229,7 @@ class MovieFullInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Genre: $genre.',
+                      'Genre: ${widget.genre}.',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
@@ -202,7 +237,7 @@ class MovieFullInfo extends StatelessWidget {
                     ),
                     5.height(),
                     Text(
-                      about,
+                      widget.about,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
@@ -212,21 +247,119 @@ class MovieFullInfo extends StatelessWidget {
                 ),
               ),
 
-              10.height(),
+              20.height(),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for (int i = 1; i <= 5; i++)
+                    for (int i = 1; i <= movieCasts_ls.length; i++)
                       movieCasts(
                         imagePath:
                             'https://randomuser.me/api/portraits/men/${i}.jpg',
-                        personName: 'personName',
-                        personRole: 'personRole',
+                        personName: '${movieCasts_ls[i - 1]['name']}',
+                        personRole: '${movieCasts_ls[i - 1]['cast']}',
                       )
                   ],
                 ),
-              )
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ZoomTapAnimation(
+                    onTap: () {
+                      setState(() {
+                        color1 = Color(0xFF820FE1);
+                        color2 = Colors.grey;
+                        color3 = Colors.grey;
+                      });
+                      Trailers();
+                    },
+                    child: Container(
+                      width: 119.h,
+                      height: 50.w,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: color1, width: 2.sp),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Trailers',
+                          style: TextStyle(
+                            color: Color(0xFF820FE1),
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  ZoomTapAnimation(
+                    onTap: () {
+                      setState(() {
+                        color2 = Color(0xFF820FE1);
+                        color1 = Colors.grey;
+                        color3 = Colors.grey;
+                      });
+                      MoreLikeThis();
+                    },
+                    child: Container(
+                      width: 119.h,
+                      height: 50.w,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: color2, width: 2.sp),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'More Like This',
+                          style: TextStyle(
+                            color: Color(0xFF820FE1),
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  ZoomTapAnimation(
+                    onTap: () {
+                      setState(() {
+                        color3 = Color(0xFF820FE1);
+                        color1 = Colors.grey;
+                        color2 = Colors.grey;
+                      });
+                      Comments();
+                    },
+                    child: Container(
+                      width: 119.h,
+                      height: 50.w,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: color3, width: 2.sp),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Comments',
+                          style: TextStyle(
+                            color: Color(0xFF820FE1),
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              20.height(),
+              trailerMaker(3, '1m 45s'),
+              trailerMaker(2, '2m 03s'),
+              trailerMaker(1, '1m 07s'),
+
             ],
           ),
         ),
@@ -270,7 +403,81 @@ class MovieFullInfo extends StatelessWidget {
           Container(
             height: 40.h,
             width: 40.w,
-            child: Image.network(imagePath),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: NetworkImage(imagePath),
+              ),
+            ),
+          ),
+          10.width(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                personName,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                personRole,
+                style: TextStyle(
+                  color: Colors.grey.withOpacity(0.9),
+                  fontSize: 12.sp,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget trailerMaker(int index, String min) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 10.h, left: 10.w),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/images/page_1/avatar.jpg',
+            width: 70.w,
+            height: 100.h,
+          ),
+          30.width(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Trailer $index: Final',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              10.height(),
+              Text(
+                min,
+                style: TextStyle(color: Colors.white),
+              ),
+              10.height(),
+              Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7.r),
+                  color: Color(0xFF28191E),
+                ),
+                child: Text(
+                  'Update',
+                  style: TextStyle(
+                      color: Color(0xFF5B148A),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.sp),
+                ),
+              ),
+            ],
           ),
         ],
       ),
