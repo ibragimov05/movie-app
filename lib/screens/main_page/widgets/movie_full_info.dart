@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,14 +56,14 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
     },
   ];
 
-  Color color1 = Color(0xFF820FE1);
+  Color color1 = const Color(0xFF820FE1);
   Color color2 = Colors.grey;
   Color color3 = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1B1F32),
+      backgroundColor: const Color(0xFF1B1F32),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -78,9 +76,10 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   image: DecorationImage(
-                      image: AssetImage(widget.movieTeaser),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter),
+                    image: AssetImage(widget.movieTeaser),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                  ),
                 ),
               ),
               10.height(),
@@ -89,7 +88,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 250.w,
                       child: Text(
                         widget.movieName,
@@ -102,17 +101,15 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                     ),
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 19.w,
                           height: 19.h,
-                          // color: Colors.blue,/
                           child: Image.asset('assets/icons/bookmark.png'),
                         ),
                         5.width(),
-                        Container(
+                        SizedBox(
                           width: 19.w,
                           height: 19.h,
-                          // color: Colors.blue,/
                           child: Image.asset('assets/icons/send.png'),
                         ),
                       ],
@@ -122,31 +119,36 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
               ),
               20.height(),
               Container(
-                padding: EdgeInsets.only(left: 10.w, right: 25.w),
+                padding: EdgeInsets.only(
+                  left: 10.w,
+                  right: 25.w,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.star,
                       color: Color(0xFF820FE1),
                     ),
                     Text(
                       widget.movieRating,
-                      style: TextStyle(
-                          color: Color(0xFF820FE1),
-                          fontWeight: FontWeight.w700),
+                      style: const TextStyle(
+                        color: Color(0xFF820FE1),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     Icon(
                       Icons.arrow_forward_ios_rounded,
-                      color: Color(0xFF820FE1),
+                      color: const Color(0xFF820FE1),
                       size: 15.sp,
                     ),
                     Text(
                       '  ${widget.comeOutYear}  ',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600),
+                        color: Colors.white,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     containerMaker('13+'),
                     containerMaker(widget.country),
@@ -155,7 +157,6 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                 ),
               ),
               20.height(),
-              // Text('data', style: TextStyle(color: Colors.white),)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -166,7 +167,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                       width: 160.w,
                       height: 40.h,
                       decoration: BoxDecoration(
-                        color: Color(0xFF820FE1),
+                        color: const Color(0xFF820FE1),
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Row(
@@ -177,13 +178,13 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                             color: Colors.white,
                             size: 18.sp,
                           ),
-                          Text(
+                          const Text(
                             '  Play',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -197,19 +198,20 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(
-                          color: Color(0xFF820FE1),
+                          color: const Color(0xFF820FE1),
                           width: 2.w,
                         ),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                              width: 26.w,
-                              height: 26.h,
-                              child: SvgPicture.asset(
-                                  'assets/icons/download.svg')),
-                          Text(
+                          SizedBox(
+                            width: 26.w,
+                            height: 26.h,
+                            child:
+                                SvgPicture.asset('assets/icons/download.svg'),
+                          ),
+                          const Text(
                             '  Download',
                             style: TextStyle(
                               color: Colors.white,
@@ -230,7 +232,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                   children: [
                     Text(
                       'Genre: ${widget.genre}.',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
@@ -238,7 +240,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                     5.height(),
                     Text(
                       widget.about,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
@@ -246,7 +248,6 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                   ],
                 ),
               ),
-
               20.height(),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -258,22 +259,23 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                             'https://randomuser.me/api/portraits/men/${i}.jpg',
                         personName: '${movieCasts_ls[i - 1]['name']}',
                         personRole: '${movieCasts_ls[i - 1]['cast']}',
-                      )
+                      ),
                   ],
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ZoomTapAnimation(
                     onTap: () {
-                      setState(() {
-                        color1 = Color(0xFF820FE1);
-                        color2 = Colors.grey;
-                        color3 = Colors.grey;
-                      });
-                      Trailers();
+                      setState(
+                        () {
+                          color1 = const Color(0xFF820FE1);
+                          color2 = Colors.grey;
+                          color3 = Colors.grey;
+                        },
+                      );
+                      const Trailers();
                     },
                     child: Container(
                       width: 119.h,
@@ -287,7 +289,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                         child: Text(
                           'Trailers',
                           style: TextStyle(
-                            color: Color(0xFF820FE1),
+                            color: const Color(0xFF820FE1),
                             fontSize: 17.sp,
                             fontWeight: FontWeight.w700,
                           ),
@@ -298,11 +300,11 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                   ZoomTapAnimation(
                     onTap: () {
                       setState(() {
-                        color2 = Color(0xFF820FE1);
+                        color2 = const Color(0xFF820FE1);
                         color1 = Colors.grey;
                         color3 = Colors.grey;
                       });
-                      MoreLikeThis();
+                      const MoreLikeThis();
                     },
                     child: Container(
                       width: 119.h,
@@ -316,7 +318,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                         child: Text(
                           'More Like This',
                           style: TextStyle(
-                            color: Color(0xFF820FE1),
+                            color: const Color(0xFF820FE1),
                             fontSize: 17.sp,
                             fontWeight: FontWeight.w700,
                           ),
@@ -327,11 +329,11 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                   ZoomTapAnimation(
                     onTap: () {
                       setState(() {
-                        color3 = Color(0xFF820FE1);
+                        color3 = const Color(0xFF820FE1);
                         color1 = Colors.grey;
                         color2 = Colors.grey;
                       });
-                      Comments();
+                      const Comments();
                     },
                     child: Container(
                       width: 119.h,
@@ -345,7 +347,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
                         child: Text(
                           'Comments',
                           style: TextStyle(
-                            color: Color(0xFF820FE1),
+                            color: const Color(0xFF820FE1),
                             fontSize: 17.sp,
                             fontWeight: FontWeight.w700,
                           ),
@@ -359,7 +361,6 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
               trailerMaker(3, '1m 45s'),
               trailerMaker(2, '2m 03s'),
               trailerMaker(1, '1m 07s'),
-
             ],
           ),
         ),
@@ -377,14 +378,14 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
       ),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xFF820FE1),
+          color: const Color(0xFF820FE1),
           width: 1.5.sp,
         ),
         borderRadius: BorderRadius.circular(5.r),
       ),
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           color: Color(0xFF820FE1),
         ),
       ),
@@ -416,7 +417,7 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
             children: [
               Text(
                 personName,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
                 ),
@@ -460,21 +461,22 @@ class _MovieFullInfoState extends State<MovieFullInfo> {
               10.height(),
               Text(
                 min,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
               10.height(),
               Container(
-                padding: EdgeInsets.all(5),
+                padding: EdgeInsets.all(5.sp),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7.r),
-                  color: Color(0xFF28191E),
+                  color: const Color(0xFF28191E),
                 ),
                 child: Text(
                   'Update',
                   style: TextStyle(
-                      color: Color(0xFF5B148A),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12.sp),
+                    color: const Color(0xFF5B148A),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                  ),
                 ),
               ),
             ],

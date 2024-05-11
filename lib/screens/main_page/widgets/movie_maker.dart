@@ -121,16 +121,19 @@ class MovieMaker extends StatelessWidget {
           color: CupertinoColors.white,
           borderRadius: BorderRadius.circular(13.r),
           image: DecorationImage(
-              image: AssetImage(movieTeaser), fit: BoxFit.cover),
+            image: AssetImage(movieTeaser),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(8.sp),
               decoration: BoxDecoration(
-                  color: Color(0xFF820FE1),
-                  borderRadius: BorderRadius.circular(5.r)),
+                color: const Color(0xFF820FE1),
+                borderRadius: BorderRadius.circular(5.r),
+              ),
               child: Text(
                 movieRating,
                 style: TextStyle(
@@ -140,7 +143,6 @@ class MovieMaker extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ),
       ),

@@ -51,11 +51,11 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF14191E),
+      backgroundColor: const Color(0xFF14191E),
       appBar: AppBar(
         foregroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        backgroundColor: Color(0xFF14191E),
+        backgroundColor: const Color(0xFF14191E),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -64,11 +64,12 @@ class MainPage extends StatelessWidget {
               width: 280.w,
               height: 45.h,
               decoration: BoxDecoration(
-                  color: Color(0xFF1E1E28),
-                  borderRadius: BorderRadius.circular(10.r)),
+                color: const Color(0xFF1E1E28),
+                borderRadius: BorderRadius.circular(10.r),
+              ),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     CupertinoIcons.search,
                     color: Color(0xFF494B4E),
                   ),
@@ -76,9 +77,10 @@ class MainPage extends StatelessWidget {
                   Text(
                     'Search',
                     style: TextStyle(
-                        color: Color(0xFF494B4E),
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700),
+                      color: const Color(0xFF494B4E),
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -87,7 +89,7 @@ class MainPage extends StatelessWidget {
               height: 45.h,
               width: 45.w,
               decoration: BoxDecoration(
-                color: Color(0xFF28191E),
+                color: const Color(0xFF28191E),
                 borderRadius: BorderRadius.circular(10.r),
               ),
             )
@@ -117,8 +119,9 @@ class MainPage extends StatelessWidget {
       floatingActionButton: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(10.r)),
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(10.r),
+        ),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
           child: Container(
@@ -128,12 +131,12 @@ class MainPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Icon(Icons.home, color: Colors.grey, size: 30),
-                Icon(Icons.explore, color: Colors.grey, size: 30),
+                Icon(Icons.home, color: Colors.grey, size: 30.sp),
+                Icon(Icons.explore, color: Colors.grey, size: 30.sp),
                 Icon(Icons.bookmark_border_rounded,
-                    color: Colors.grey, size: 30),
-                Icon(Icons.download, color: Colors.grey, size: 30),
-                Icon(Icons.person, color: Colors.grey, size: 30),
+                    color: Colors.grey, size: 30.sp),
+                Icon(Icons.download, color: Colors.grey, size: 30.sp),
+                Icon(Icons.person, color: Colors.grey, size: 30.sp),
               ],
             ),
           ),
